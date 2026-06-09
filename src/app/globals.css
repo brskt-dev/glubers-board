@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-night-950 text-snow font-body antialiased;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    /* Frozen-night atmosphere: soft cyan glows over a deep dark base */
+    background-image: radial-gradient(
+        60% 50% at 50% 0%,
+        rgba(56, 189, 248, 0.1),
+        transparent 70%
+      ),
+      radial-gradient(45% 45% at 92% 8%, rgba(34, 211, 238, 0.08), transparent 70%),
+      radial-gradient(40% 40% at 6% 100%, rgba(14, 165, 233, 0.07), transparent 70%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* Thin frosty scrollbar to match the theme */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1e3550 transparent;
+  }
+}
+
+@layer components {
+  /* Reusable blocky/pixel border treatment for plaques and cards */
+  .pixel-edge {
+    @apply border-2 border-night-600;
+    box-shadow: inset 2px 2px 0 0 rgba(255, 255, 255, 0.06),
+      inset -2px -2px 0 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .frost-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-frost-400/40 to-transparent;
+  }
+}
+
+@layer utilities {
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.55);
+  }
+
+  .tracking-pixel {
+    letter-spacing: 0.04em;
+  }
+
+  /* Respect users who prefer less motion: silence the ambient animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-snowfall,
+    .animate-float,
+    .animate-aurora,
+    .animate-shimmer,
+    .animate-ice-glow {
+      animation: none !important;
+    }
+  }
+}
